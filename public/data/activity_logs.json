@@ -1,0 +1,54 @@
+[
+  {
+    "id": "log-01",
+    "eventId": "evt-techspire-2026",
+    "category": "Contact Person",
+    "title": "Mengajukan Pembaruan CP",
+    "description": "Mengajukan perubahan email CP PT Teknologi Nusantara ke partnerships@teknusa.co.id (Menunggu Persetujuan).",
+    "actor": "Dhina Kusuma (Staff EEO)",
+    "timestamp": "2026-11-25 14:20 WIB",
+    "sensitive": false
+  },
+  {
+    "id": "log-02",
+    "eventId": "evt-techspire-2026",
+    "category": "Proposal & Pipeline",
+    "title": "Menambahkan Proposal Baru",
+    "description": "Menambahkan proposal PT Teknologi Nusantara ke dalam database dengan jadwal otomatis D+3 & D+7.",
+    "actor": "Ahmad Fauzi (Staff EEO)",
+    "timestamp": "2026-11-19 13:05 WIB",
+    "sensitive": false
+  },
+  {
+    "id": "log-03",
+    "eventId": "evt-techspire-2026",
+    "category": "Pitching & MoU",
+    "title": "Menetapkan Grading Gold",
+    "description": "Dicoding Indonesia disetujui (Accept) pada paket Gold dengan 3 poin benefit.",
+    "sensitiveDetail": "Nominal Sponsorship: Rp 4.000.000.",
+    "actor": "Hugo Mahesa (Manager)",
+    "timestamp": "2026-11-24 16:10 WIB",
+    "sensitive": true
+  },
+  {
+    "id": "log-04",
+    "eventId": "evt-techspire-2026",
+    "category": "Pitching & MoU",
+    "title": "MoU Selesai Difinalisasi",
+    "description": "Dokumen MoU Platinum Sponsor Traveloka Indonesia telah ditandatangani dan diarsipkan.",
+    "sensitiveDetail": "Nilai Deal: Rp 10.000.000.",
+    "actor": "Hugo Mahesa (Manager)",
+    "timestamp": "2026-11-15 16:00 WIB",
+    "sensitive": true
+  },
+  {
+    "id": "log-05",
+    "eventId": "evt-techspire-2026",
+    "category": "Impor & Handover",
+    "title": "Handover Pengurus Selesai",
+    "description": "Mewariskan seluruh data partner & riwayat kerja sama dari kepengurusan sebelumnya secara utuh.",
+    "actor": "Hugo Mahesa (Manager)",
+    "timestamp": "2026-11-10 14:20 WIB",
+    "sensitive": false
+  }
+]

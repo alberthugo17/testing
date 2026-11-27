@@ -1,14 +1,13 @@
 import {useState, type FormEvent} from 'react';
 import {AlertCircle, CheckCircle2, Database, Eye, EyeOff, Lock, LogOut, ShieldCheck} from 'lucide-react';
-import type {UserAccount, UserRole} from '../types/database';
-import type {PrototypeDatabaseSnapshot} from '../services/jsonDb';
+import type {DatabaseState, UserAccount, UserRole} from '../types/database';
 import {authenticateUser, getRoleConfig, validateLoginInput} from '../utils/auth';
 
 interface LoginSectionProps {
   selectedRole: UserRole;
   onSelectRole: (role: UserRole) => void;
   currentUser: UserAccount | null;
-  dbSnapshot: PrototypeDatabaseSnapshot | null;
+  dbState: DatabaseState | null;
   dbError: string | null;
   isLoadingDb: boolean;
   onLoginSuccess: (user: UserAccount) => void;
@@ -19,7 +18,7 @@ export function LoginSection({
   selectedRole,
   onSelectRole,
   currentUser,
-  dbSnapshot,
+  dbState,
   dbError,
   isLoadingDb,
   onLoginSuccess,
@@ -61,14 +60,14 @@ export function LoginSection({
       return;
     }
 
-    if (!dbSnapshot) {
+    if (!dbState) {
       setFormError(
         dbError ?? 'Database prototype belum selesai dimuat. Silakan coba sesaat lagi.'
       );
       return;
     }
 
-    const result = authenticateUser(dbSnapshot.users, selectedRole, email, password);
+    const result = authenticateUser(dbState.users, selectedRole, email, password);
     if (!result.ok || !result.user) {
       setFormError(result.error ?? 'Gagal masuk.');
       return;
@@ -137,7 +136,7 @@ export function LoginSection({
               </div>
             </div>
 
-            {dbSnapshot && (
+            {dbState && (
               <div className="mt-6 border-t border-[#E6F0FD] pt-6">
                 <div className="flex items-center gap-2 text-sm font-bold text-[#1E1E1E]">
                   <Database className="h-4 w-4 text-[#2454AB]" aria-hidden="true" />
@@ -146,26 +145,23 @@ export function LoginSection({
                 <div className="mt-4 grid grid-cols-3 divide-x divide-[#E6F0FD] rounded-xl bg-[#E6F0FD]/45 py-3 text-center">
                   <div className="px-2">
                     <p className="font-mono text-xl font-bold tabular-nums text-[#2454AB]">
-                      {dbSnapshot.users.length}
+                      {dbState.users.length}
                     </p>
                     <p className="mt-0.5 text-xs font-medium text-[#434242]">Akun Pengurus</p>
                   </div>
                   <div className="px-2">
                     <p className="font-mono text-xl font-bold tabular-nums text-[#2454AB]">
-                      {dbSnapshot.events.length}
+                      {dbState.events.length}
                     </p>
                     <p className="mt-0.5 text-xs font-medium text-[#434242]">Event BNCC</p>
                   </div>
                   <div className="px-2">
                     <p className="font-mono text-xl font-bold tabular-nums text-[#2454AB]">
-                      {dbSnapshot.partners.length}
+                      {dbState.partners.length}
                     </p>
                     <p className="mt-0.5 text-xs font-medium text-[#434242]">Partner Seed</p>
                   </div>
                 </div>
-                <p className="mt-3 text-xs text-[#878787]">
-                  Tampilan dashboard lanjutan untuk {currentUser.title} siap dikembangkan pada tahap berikutnya.
-                </p>
               </div>
             )}
           </div>

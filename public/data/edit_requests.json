@@ -1,0 +1,77 @@
+[
+  {
+    "id": "req-01",
+    "eventId": "evt-techspire-2026",
+    "partnerId": "prt-05",
+    "companyName": "IDCloudHost",
+    "requestTitle": "Pembaruan Contact Person (CP Pengganti)",
+    "submittedBy": "Ahmad Fauzi (Staff EEO)",
+    "submittedAt": "2026-11-25 09:45 WIB",
+    "status": "Pending",
+    "rejectionReason": "",
+    "oldValue": {
+      "name": "Sari Dewi",
+      "role": "Marketing Specialist",
+      "contact": "0812-7788-9900 / sari@idcloudhost.com",
+      "isAvailable": false,
+      "notes": "PIC lama resign dari divisi partnership."
+    },
+    "newValue": {
+      "name": "Budi Santoso",
+      "role": "Partnership & Community Executive",
+      "contact": "0812-7788-9900 / budi.santoso@idcloudhost.com",
+      "isAvailable": true,
+      "notes": "CP baru aktif menggantikan Ibu Sari mulai minggu ini (09.00 - 17.00 WIB)."
+    }
+  },
+  {
+    "id": "req-02",
+    "eventId": "evt-techspire-2026",
+    "partnerId": "prt-07",
+    "companyName": "PT Teknologi Nusantara",
+    "requestTitle": "Update Kontak & Catatan Ketersediaan CP",
+    "submittedBy": "Dhina Kusuma (Staff EEO)",
+    "submittedAt": "2026-11-25 14:20 WIB",
+    "status": "Pending",
+    "rejectionReason": "",
+    "oldValue": {
+      "name": "Dimas Pratama",
+      "role": "Head of People & Partnership",
+      "contact": "0815-4566-7722 / dimas@teknusa.co.id",
+      "isAvailable": true,
+      "notes": "Hanya bisa dihubungi pukul 09.00 - 17.00 WIB."
+    },
+    "newValue": {
+      "name": "Dimas Pratama",
+      "role": "Head of People & Partnership",
+      "contact": "0815-4566-7722 / partnerships@teknusa.co.id",
+      "isAvailable": true,
+      "notes": "CP meminta seluruh korespondensi MoU dikirim melalui email partnerships@teknusa.co.id pada hari kerja."
+    }
+  },
+  {
+    "id": "req-03",
+    "eventId": "evt-ts-2026",
+    "partnerId": "prt-08",
+    "companyName": "NiagaHoster",
+    "requestTitle": "Pembaruan Contact Person (CP Pengganti)",
+    "submittedBy": "Liza Hartanto (Staff EEO)",
+    "submittedAt": "2026-11-15 11:00 WIB",
+    "status": "Approved",
+    "rejectionReason": "",
+    "oldValue": {
+      "name": "Rudi Hartono",
+      "role": "Brand Marketing",
+      "contact": "0821-0000-1111 / rudi@niagahoster.co.id",
+      "isAvailable": false,
+      "notes": "Pindah divisi."
+    },
+    "newValue": {
+      "name": "Dito Anggraini",
+      "role": "Digital Partnership",
+      "contact": "0821-3344-5505 / dito@niagahoster.co.id",
+      "isAvailable": true,
+      "notes": "Partner rutin TechnoScape sejak 2024."
+    }
+  }
+]

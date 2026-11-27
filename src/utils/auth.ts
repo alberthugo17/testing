@@ -23,6 +23,29 @@ export interface RoleConfig {
   accessSummary: string;
 }
 
+export interface RolePermissions {
+  canViewSponsorshipValue: boolean;
+  canEditPitchingGrading: boolean;
+  canApproveEditRequests: boolean;
+  canManageMouTemplates: boolean;
+  canFinalizeMou: boolean;
+  canCreateEvent: boolean;
+  canDirectEditCp: boolean;
+}
+
+export function getRolePermissions(user: UserAccount): RolePermissions {
+  const isManager = user.role === 'admin';
+  return {
+    canViewSponsorshipValue: isManager || user.canViewSponsorshipValue,
+    canEditPitchingGrading: isManager,
+    canApproveEditRequests: isManager,
+    canManageMouTemplates: isManager,
+    canFinalizeMou: isManager,
+    canCreateEvent: isManager,
+    canDirectEditCp: isManager,
+  };
+}
+
 export function getRoleConfig(role: UserRole): RoleConfig {
   if (role === 'admin') {
     return {
@@ -30,9 +53,9 @@ export function getRoleConfig(role: UserRole): RoleConfig {
       kicker: 'ADMIN',
       label: 'Manager',
       buttonLabel: 'Masuk ke Dashboard Manager EEO',
-      emailPlaceholder: 'abcd.manager@bncc.net',
-      demoEmail: 'abcd.manager@bncc.net',
-      demoPassword: 'eeo2026',
+      emailPlaceholder: 'cluster5@bncc.net',
+      demoEmail: 'cluster5@bncc.net',
+      demoPassword: 'cluster5gacor',
       accessSummary:
         'Akses penuh hasil pitching, nominal sponsorship, persetujuan edit staff, dan template MoU per event.',
     };
@@ -43,11 +66,11 @@ export function getRoleConfig(role: UserRole): RoleConfig {
     kicker: 'MEMBER',
     label: 'Staff EEO',
     buttonLabel: 'Masuk ke Dashboard Staff EEO',
-    emailPlaceholder: 'dhina.staff@bncc.net',
-    demoEmail: 'dhina.staff@bncc.net',
-    demoPassword: 'eeo2026',
+    emailPlaceholder: 'cluster5@bncc.net',
+    demoEmail: 'cluster5@bncc.net',
+    demoPassword: 'cluster5gacor',
     accessSummary:
-      'Akses input cepat partner, pembaruan Contact Person, pipeline status proposal, dan checklist benefit tanpa nominal sponsorship.',
+      'Akses input cepat partner, pembaruan Contact Person (via persetujuan Manager), jadwal meeting, dan pipeline proposal tanpa nominal sponsorship.',
   };
 }
 
@@ -99,31 +122,34 @@ export function authenticateUser(
   const email = rawEmail.trim().toLowerCase();
   const password = rawPassword;
 
-  const matchedUser = users.find((u) => u.email.toLowerCase() === email);
-  if (!matchedUser) {
+  const emailMatches = users.filter((u) => u.email.toLowerCase() === email);
+  if (emailMatches.length === 0) {
     return {
       ok: false,
       error: 'Email pengurus tidak terdaftar pada database prototype.',
     };
   }
 
-  if (matchedUser.password !== password) {
-    return {
-      ok: false,
-      error: 'Password yang dimasukkan salah. Periksa kembali kredensial Anda.',
-    };
-  }
-
-  if (matchedUser.role !== selectedRole) {
-    const expectedLabel = matchedUser.role === 'admin' ? 'ADMIN (Manager)' : 'MEMBER (Staff EEO)';
+  const matchedForRole = emailMatches.find((u) => u.role === selectedRole);
+  if (!matchedForRole) {
+    const fallbackUser = emailMatches[0];
+    const expectedLabel =
+      fallbackUser.role === 'admin' ? 'ADMIN (Manager)' : 'MEMBER (Staff EEO)';
     return {
       ok: false,
       error: `Akun ini terdaftar sebagai ${expectedLabel}. Silakan pilih role ${expectedLabel} di atas.`,
     };
   }
 
+  if (matchedForRole.password !== password) {
+    return {
+      ok: false,
+      error: 'Password yang dimasukkan salah. Periksa kembali kredensial Anda.',
+    };
+  }
+
   return {
     ok: true,
-    user: matchedUser,
+    user: matchedForRole,
   };
 }
